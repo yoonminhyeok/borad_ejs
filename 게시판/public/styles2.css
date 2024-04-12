@@ -1,0 +1,103 @@
+/* styles.css */
+
+/* 공통 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.notice {
+    padding: 80px 0;
+}
+
+.page-title {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.page-title h3 {
+    font-size: 28px;
+}
+
+/* 글쓰기 폼 스타일 */
+#board-write {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.write-wrap {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.write-wrap label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.write-wrap input[type="text"],
+.write-wrap textarea {
+    width: 100%;
+    
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: none;
+    resize: vertical;
+    font-size: 20px;
+}
+
+.write-wrap button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.write-wrap button:hover {
+    background-color: #555;
+}
+
+/* 리셋 스타일 */
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* clearfix */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+.aaa {
+    height: 200px;
+}
