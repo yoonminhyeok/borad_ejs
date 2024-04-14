@@ -49,7 +49,9 @@
                         <tr>
                             <td><%= item.No %></td>
                             <td><%= item.Title %></td>
-                            <td><%= item.regdate %></td>
+                            <td><%= new Date(item.regdate).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+
+                            </td>
                         </tr>
                     <% }) %> 
                 
