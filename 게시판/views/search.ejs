@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<section class="notice">
+    <div class="page-title">
+        <div class="container">
+            <h3>검색 결과</h3>
+        </div>
+    </div>
+
+    <!-- board list area -->
+    <div id="board-list">
+        <div class="container">
+            <table class="board-table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="th-num">번호</th>
+                        <th scope="col" class="th-title">제목</th>
+                        <th scope="col" class="th-date">등록일</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (posts.length === 0) { %>
+                        <tr>
+                            <td colspan="3">검색 결과가 없습니다.</td>
+                            
+                        </tr>
+                    <% } else { %>
+                        <% posts.forEach(function(item) { %>
+                            <tr>
+                               
+                                <td><%= item.No %></td>
+                                <td><%= item.Title %></td>
+                                <td><%= new Date(item.regdate).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' }) %></td>
+                            </tr>
+                        <% }) %> 
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -35,7 +35,7 @@ app.use(express.json())
 app.get('/', (req, res) => {
     
     
-
+    
     connection.query('SELECT * FROM board ORDER BY regdate DESC', (err, results) => {
         if (err) {
             console.error('게시글 조회 오류:', err);
@@ -46,6 +46,8 @@ app.get('/', (req, res) => {
         
         // 홈페이지 템플릿에 최신 게시글 데이터 전달
         res.render('index', { posts: results });
+
+        
     });
 
     // res.render('index')   // .views/index.ejs 불러
@@ -57,13 +59,31 @@ app.get('/write', (req, res) => {
 })
 
 
+
+
+app.get('/search', (req, res) => {
+    const query = req.query.query; // 검색어 가져오기
+
+    // MySQL 쿼리를 사용하여 검색어와 일치하는 게시물을 검색
+    const sql = `SELECT * FROM board WHERE Title LIKE '%${query}%' OR content LIKE '%${query}%' ORDER BY regdate DESC`;
+
+    connection.query(sql, (err, results) => {
+        if (err) {
+            console.error('검색 오류:', err);
+            res.status(500).send('검색에 실패했습니다.');
+            return;
+        }
+        // 검색 결과를 템플릿으로 전달하여 렌더링
+        res.render('search', { posts: results });
+    });
+});
 app.post('/moment', (req, res)=> {
     const title = req.body.title;
     const content= req.body.content;
 
     
     var sql=`INSERT INTO board (Title,content,regdate) 
-                VALUES( '${title}', '${content}', CURDATE() )`
+                VALUES( '${title}', '${content}',  NOW() )`
     
     connection.query(sql, function(err, result) {
         if(err) throw err;
