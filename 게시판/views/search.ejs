@@ -10,10 +10,28 @@
 <section class="notice">
     <div class="page-title">
         <div class="container">
-            <h3>검색 결과</h3>
+            <h3>공지사항</h3>
         </div>
     </div>
 
+        <!-- board search area -->
+        <div id="board-search">
+            <div class="container">
+                <div class="search-window">
+                    <form action="/search" method="get">
+                        <div class="search-wrap">
+                            <label for="search" class="blind">공지사항 내용 검색</label>
+                            <input id="search" type="search" name="query"  placeholder="검색어를 입력해주세요." value="">
+                            <button type="submit" class="btn btn-dark">검색</button>
+                            <!-- 글쓰기 버튼 추가 -->
+                            <!-- <button class="btn btn-dark" style="margin-left: 10px;">글쓰기</button> -->
+                            <!-- <button type="submit" class="btn btn-dark">검색</button> -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+       
     <!-- board list area -->
     <div id="board-list">
         <div class="container">

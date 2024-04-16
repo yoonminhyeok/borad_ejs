@@ -96,12 +96,9 @@ app.post('/moment', (req, res)=> {
 
 })
 
-app.get('/boardList', (req,res) => {
-    var sql= `select * from board`
-    connection.query(sql, function(err ,results, fields){
-        if(err) throw err;
-        res.render('boardList', {lists: results})
-    })
+app.get('/detailPage', (req,res) => {
+   
+        res.render('detailPage')
 })
 
 app.listen(port, () => {
