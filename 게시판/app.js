@@ -88,7 +88,7 @@ app.post('/moment', (req, res)=> {
     connection.query(sql, function(err, result) {
         if(err) throw err;
         console.log("자료 1개를 삽입했습니다");
-        res.send("<Script> alert('문의사항이 등록되었습니다'); location.href='/' </Script>")
+        res.send("<Script> alert('글이 등록되었습니다'); location.href='/' </Script>")
 
 
     })
@@ -96,10 +96,28 @@ app.post('/moment', (req, res)=> {
 
 })
 
-app.get('/detailPage', (req,res) => {
-   
-        res.render('detailPage')
-})
+
+
+// app.js
+
+app.get('/detailPage/:No', (req, res) => {
+    const postNo = req.params.No; 
+    connection.query('SELECT * FROM board WHERE No = ?', postNo, (err, result) => { 
+        if (err) {
+            console.error('게시글 조회 오류:', err);
+            res.status(500).send('게시글 조회에 실패했습니다.');
+            return;
+        }
+        if (result.length === 0) {
+            res.status(404).send('해당 No의 게시글을 찾을 수 없습니다.');
+            return;
+        }
+        const post = result[0];
+        res.render('detailPage', { post }); // 이 부분에서 post 객체를 렌더링에 전달합니다.
+    });
+});
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

@@ -1,3 +1,4 @@
+<!-- detailPage.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,10 +19,10 @@
     <div id="post-details">
         <div class="container">
             <div class="post-content">
-                <h2 class="post-title">제목</h2>
-                <p class="post-date">등록일</p>
+                <h2 class="post-title"><%= post.Title %></h2>
+                <p class="post-date">등록일: <%= new Date(post.regdate).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
                 <div class="post-body">
-                    <p>내용</p>
+                    <p><%= post.content %></p>
                 </div>
             </div>
         </div>

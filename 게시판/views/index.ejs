@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>게시판</title>
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 <section class="notice">
     <div class="page-title">
         <div class="container">
-            <h3>공지사항</h3>
+            <h1>게시판</h1>
         </div>
     </div>
 
@@ -23,9 +23,6 @@
                         <label for="search" class="blind">공지사항 내용 검색</label>
                         <input id="search" type="search" name="query"  placeholder="검색어를 입력해주세요." value="">
                         <button type="submit" class="btn btn-dark">검색</button>
-                        <!-- 글쓰기 버튼 추가 -->
-                        <!-- <button class="btn btn-dark" style="margin-left: 10px;">글쓰기</button> -->
-                        <!-- <button type="submit" class="btn btn-dark">검색</button> -->
                     </div>
                 </form>
             </div>
@@ -37,34 +34,43 @@
         <div class="container">
             <table class="board-table">
                 <thead>
-                <tr>
-                    <th scope="col" class="th-num">번호</th>
-                    <th scope="col" class="th-title">제목</th>
-                    <th scope="col" class="th-date">등록일</th>
-                </tr>
+                    <tr>
+                        <th scope="col" class="th-num">번호</th>
+                        <th scope="col" class="th-title">제목</th>
+                        <th scope="col" class="th-date">등록일</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    
                     <% posts.forEach(function(item) { %>
                         <tr>
                             <td><%= item.No %></td>
-                            <td><%= item.Title %></td>
-                            <td><%= new Date(item.regdate).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' }) %>
-
-                            </td>
+                            <!-- 수정된 부분: 제목을 클릭할 때 해당 글의 No를 이용하여 상세 페이지로 이동 -->
+                            <td><a href="#" class="post-link" data-post-no="<%= item.No %>"><%= item.Title %></a></td>
+                            <td><%= new Date(item.regdate).toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' }) %></td>
                         </tr>
                     <% }) %> 
-                
                 </tbody>
-                <br>
             </table>
             <br>
             <a href="/write" class="btn btn-dark write-btn">글쓰기</a>
-            <ul>
-              
-            </ul>
         </div>
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const postLinks = document.querySelectorAll('.post-link');
+
+        postLinks.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // 기본 동작 중단
+
+                const postNo = this.getAttribute('data-post-no');
+                window.location.href = `/detailPage/${postNo}`; // 해당 글의 상세 페이지로 이동
+            });
+        });
+    });
+</script>
+
 </body>
 </html>
